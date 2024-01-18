@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_library_book_tree" model="ir.ui.view">
+            <field name="name">library.book.tree</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <tree js_class="export_xlsx2_tree">
+                    <field name="name"/>
+                    <field name="author_ids" widget="many2many_tags"/>
+                    <field name="state" invisible="1"/>
+                    <field name="isbn" attrs="{'invisible': [('state', '=', 'out_of_stock')]}"/>
+                    <field name="year"/>
+                    <field name="is_available"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_library_book_kanban" model="ir.ui.view">
+            <field name="name">library.book.kanban</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_image">
+                                    <img t-att-src="'/web/image/' + record.cover_128"/>
+                                </div>
+                                <strong class="oe_kanban_record_name">Record Name</strong>
+                                <div class="oe_kanban_details">
+                                    <p><field name="name"/></p>
+                                    <p><field name="author_ids"/></p>
+                                    <p><field name="isbn"/></p>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_library_book_form" model="ir.ui.view">
+            <field name="name">library.book.form</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <button name="action_set_out_of_stock"
+                                string="Out of Stock"
+                                class="oe_highlight"
+                                type="object"
+                                attrs="{'invisible': [('state', '=', 'out_of_stock')]}"/>
+                        <button name="action_set_in_stock"
+                                string="In Stock"
+                                class="oe_highlight"
+                                type="object"
+                                attrs="{'invisible': [('state', '=', 'in_stock')]}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="cover_128" invisible="1"/>
+                            <field name="cover_1920" widget='image' class="oe_avatar" options='{"preview_image": "cover_128"}'/>
+                            <group>
+                                <field name="name"/>
+                                <field name="author_ids" widget="many2many_tags"/>
+                                <field name="isbn"/>
+                                <field name="year"/>
+                                <field name="is_available"/>
+                            </group>
+                            <group>
+                                <field name="description"/>
+                                <field name="date_published"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="price" t-options='{"widget": "monetary", "display_currency": currency_id}'/>
+                                <field name="borrowing_hours"/>
+                                <field name="category_id"/>
+                                <field name="codigo_qr" widget='image' class="oe_avatar"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Bibliographic References">
+                                <field name="bibliographic_reference_ids" widget="one2many" colspan="4" nolabel="1" mode="tree">
+                                    <tree editable="top">
+                                        <field name="library_id"/>
+                                        <field name="title"/>
+                                        <field name="author_ids"/>
+                                        <field name="publication_date"/>
+                                        <field name="isbn"/>
+                                        <field name="summary"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_library_book_calendar" model="ir.ui.view">
+            <field name="name">library.book.calendar</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <calendar string="Library Books" date_start="date_published">
+                    <field name="name"/>
+                    <field name="date_published"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="view_library_book_pivot" model="ir.ui.view">
+            <field name="name">library.book.pivot</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <pivot string="Library Books Pivot">
+                    <field name="category_id" type="row"/>
+                    <field name="date_published" type="col"/>
+                    <field name="price" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_library_book_graph" model="ir.ui.view">
+            <field name="name">library.book.graph</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <graph string="Library Books Graph">
+                    <field name="category_id" type="row"/>
+                    <field name="date_published" type="col"/>
+                    <field name="price" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+
+        <record id="view_library_book_search" model="ir.ui.view">
+            <field name="name">library.book.search</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="category_id"/>
+                    <field name="date_published"/>
+                    <field name="is_available"/>
+                    <filter string="Date" name="group_date_published" context="{'group_by':'date_published'}"/>
+                    <filter string="Category" name="category_id" context="{'group_by':'category_id'}"/>
+                    <filter string="Available" name="filter_available" domain="[('is_available', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_library_book" model="ir.actions.act_window">
+            <field name="name">Library Books</field>
+            <field name="res_model">library.book</field>
+            <field name="view_mode">tree,form,kanban,graph,calendar,pivot</field>
+            <field name="search_view_id" ref="view_library_book_search"/>
+            <field name="context">{'search_default_filter_available': 1,
+                                   'search_default_category_id':1,
+                                   'group_by': 'category_id'}</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_library_book_tree')}),
+                          (0, 0, {'view_mode': 'calendar', 'view_id': ref('view_library_book_calendar')}),
+                          (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_library_book_pivot')}),
+                          (0, 0, {'view_mode': 'graph', 'view_id': ref('view_library_book_graph')})
+                          ]"/>
+
+
+        </record>
+
+
+        <menuitem name="Library"
+                  id="library_menu"
+                  sequence="1"
+                  web_icon='modulo_3,static/description/195786.png'/>
+
+        <menuitem id="library_menu_01"
+                  name="Library"
+                  parent="library_menu"
+                  sequence="3"
+                  action="action_library_book"/>
+
+    </data>
+</odoo>

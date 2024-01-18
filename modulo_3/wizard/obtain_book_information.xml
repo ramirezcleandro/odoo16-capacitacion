@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_obtain_book_information_form" model="ir.ui.view">
+            <field name="name">obtain.book.information.form</field>
+            <field name="model">obtain.book.information</field>
+            <field name="arch" type="xml">
+                <form string="Obtain Book Information">
+                    <group>
+                        <field name="book_id" string='Book'/>
+                    </group>
+                    <footer>
+                        <button string="Get Book Info" type="object" name="get_book_info" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_obtain_book_information" model="ir.actions.act_window">
+            <field name="name">Obtain Book Information</field>
+            <field name="res_model">obtain.book.information</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_obtain_book_information"
+                  name="Obtain Book Information"
+                  parent="modulo_3.library_menu_01"
+                  action="action_obtain_book_information"/>
+    </data>
+</odoo>

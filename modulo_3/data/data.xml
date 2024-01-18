@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <data noupdate="1">
+    <record id="library_category_1" model="library.category">
+        <field name="name">Fiction</field>
+        <field name="description">Books that involve imaginary events and people.</field>
+    </record>
+
+    <record id="library_category_2" model="library.category">
+        <field name="name">Non-Fiction</field>
+        <field name="description">Books based on real events and facts.</field>
+    </record>
+</data>

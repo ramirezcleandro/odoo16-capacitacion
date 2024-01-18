@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-extend="ListView.buttons" t-name="GAListView.buttons">
+        <t t-jquery="button.o_list_export_xlsx" t-operation="after">
+            <button type="button"
+                    class="btn btn-secondary fa fa-download o_list_export_xlsx_2"
+                    title="Export xlsx (Grouped)"
+                    aria-label="Export xlsx (Grouped)"/>
+       </t>
+   </t>
+</templates>
