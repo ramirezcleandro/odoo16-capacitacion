@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="upper_price_level"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Price Range" name="price_ranges">
+                        <field name="price_ranges"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="view_price_range_form" model="ir.ui.view">
+             <field name="name">price.range.form</field>
+             <field name="model">price.range</field>
+             <field name="arch" type="xml">
+                 <form>
+                     <sheet>
+                         <group>
+                             <field name="name"/>
+                             <field name="price_level"/>
+                             <field name="lower_price"/>
+                             <field name="upper_price"/>
+                             <field name="currency_id"/>
+                             <field name="range_type"/>
+                         </group>
+                     </sheet>
+                 </form>
+             </field>
+         </record>
+
+        <record id="view_price_range_tree" model="ir.ui.view">
+            <field name="name">price.range.tree</field>
+            <field name="model">price.range</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="price_level"/>
+                    <field name="lower_price"/>
+                    <field name="upper_price"/>
+                    <field name="currency_id"/>
+                    <field name="range_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_price_range" model="ir.actions.act_window">
+            <field name="name">Price Ranges</field>
+            <field name="res_model">price.range</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_price_range"
+                  name="Price Ranges"
+                  parent="purchase.menu_purchase_config" sequence="2"
+                  action="action_price_range"/>
+    </data>
+</odoo>
