@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+		<record model="ir.sequence" id="seq_travel_request">
+			<field name="name">Travel Request</field>
+			<field name="code">travel.request</field>
+			<field name="padding" eval="5" />
+			<field name="prefix">SV-%(year)s-</field>
+		</record>
+
+		<record model="ir.sequence" id="seq_travel_offer">
+			<field name="name">Travel Offer</field>
+			<field name="code">travel.offer</field>
+			<field name="padding" eval="5" />
+			<field name="prefix">OV-%(year)s-</field>
+		</record>
+
+		<record model="ir.sequence" id="seq_travel">
+			<field name="name">Travel</field>
+			<field name="code">travel</field>
+			<field name="padding" eval="5" />
+			<field name="prefix">VI-%(year)s-</field>
+		</record>
+	</data>
+</odoo>

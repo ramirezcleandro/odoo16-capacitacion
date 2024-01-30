@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+            <!--
+         ====================
+         Travel type
+         ====================
+            -->
+        <record id="travel_type_local" model="travel.type">
+            <field name="name">Local</field>
+        </record>
+
+        <record id="travel_type_provincial" model="travel.type">
+            <field name="name">Provincial</field>
+        </record>
+
+        <record id="travel_type_national" model="travel.type">
+            <field name="name">National</field>
+        </record>
+
+            <!--
+         ====================
+         Service type
+         ====================
+            -->
+        <record id="product_category_service_type" model="product.category">
+            <field name="name">Service type</field>
+        </record>
+
+        <record id="service_type_now" model="product.product">
+            <field name="name">Now</field>
+            <field name="categ_id" ref="product_category_service_type"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+            <!-- <field name="list_price">90</field>
+            <field name="standard_price">40</field>
+            <field name="description">Example of product to invoice on order.</field>
+            <field name="default_code">SERV_ORDER</field> -->
+        </record>
+
+        <record id="service_type_for_third" model="product.product">
+            <field name="name">For third</field>
+            <field name="categ_id" ref="product_category_service_type"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_bookings" model="product.product">
+            <field name="name">Bookings</field>
+            <field name="categ_id" ref="product_category_service_type"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_urgency" model="product.product">
+            <field name="name">Urgency</field>
+            <field name="categ_id" ref="product_category_service_type"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_available" model="product.product">
+            <field name="name">Available</field>
+            <field name="categ_id" ref="product_category_service_type"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_shared" model="product.product">
+            <field name="name">Shared</field>
+            <field name="categ_id" ref="product_category_service_type"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_shipments" model="product.product">
+            <field name="name">Shipments</field>
+            <field name="categ_id" ref="product_category_service_type"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <!-- <record id="service_type_now" model="service.type">
+            <field name="name">Now</field>
+        </record>
+
+        <record id="service_type_for_third" model="service.type">
+            <field name="name">For third</field>
+        </record>
+
+        <record id="service_type_bookings" model="service.type">
+            <field name="name">Bookings</field>
+        </record>
+
+        <record id="service_type_urgency" model="service.type">
+            <field name="name">Urgency</field>
+        </record>
+
+        <record id="service_type_available" model="service.type">
+            <field name="name">Available</field>
+        </record>
+
+        <record id="service_type_shared" model="service.type">
+            <field name="name">Shared</field>
+        </record>
+
+        <record id="service_type_shipments" model="service.type">
+            <field name="name">Shipments</field>
+        </record> -->
+
+            <!--
+       ====================
+       Service type driver
+       ====================
+          -->
+        <record id="product_category_service_type_driver" model="product.category">
+            <field name="name">Service type driver</field>
+        </record>
+
+        <record id="service_type_driver_urgency" model="product.product">
+            <field name="name">Urgency</field>
+            <field name="categ_id" ref="product_category_service_type_driver"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_driver_transfer" model="product.product">
+            <field name="name">Transfer</field>
+            <field name="categ_id" ref="product_category_service_type_driver"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_driver_shared" model="product.product">
+            <field name="name">Shared</field>
+            <field name="categ_id" ref="product_category_service_type_driver"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_driver_shipments" model="product.product">
+            <field name="name">Shipments</field>
+            <field name="categ_id" ref="product_category_service_type_driver"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_driver_last_minute" model="product.product">
+            <field name="name">Last minute</field>
+            <field name="categ_id" ref="product_category_service_type_driver"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <record id="service_type_driver_available" model="product.product">
+            <field name="name">Available</field>
+            <field name="categ_id" ref="product_category_service_type_driver"/>
+            <field name="uom_id" ref="uom.product_uom_km"/>
+            <field name="uom_po_id" ref="uom.product_uom_km"/>
+        </record>
+
+        <!-- <record id="service_type_driver_urgency" model="service.type.driver">
+            <field name="name">Urgency</field>
+        </record>
+
+        <record id="service_type_driver_transfer" model="service.type.driver">
+            <field name="name">Transfer</field>
+        </record>
+
+        <record id="service_type_driver_shared" model="service.type.driver">
+            <field name="name">Shared</field>
+        </record>
+
+        <record id="service_type_driver_shipments" model="service.type.driver">
+            <field name="name">Shipments</field>
+        </record>
+
+        <record id="service_type_driver_last_minute" model="service.type.driver">
+            <field name="name">Last minute</field>
+        </record>
+
+        <record id="service_type_driver_available" model="service.type.driver">
+            <field name="name">Available</field>
+        </record> -->
+    </data>
+</odoo>

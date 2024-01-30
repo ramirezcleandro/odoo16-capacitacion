@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--
+        ====================
+        Partner
+        ====================
+           -->
+
+
+
+        <!-- Partner Form View -->
+        <record id="view_partner_aviaje_form" model="ir.ui.view">
+            <field name="name">view.partner.aviaje.form</field>
+            <field name="model">res.partner</field>
+            <field name="priority">3</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="button_enable" string="Enable" class="oe_highlight" type="object" attrs="{'invisible': [('active', '!=' ,False)]}"/>
+                        <button name="button_disable" string="Disable" type="object" attrs="{'invisible': [('active', '!=' ,True)]}"/>
+                        <field name="document_revision_state" widget="statusbar" clickable="True" attrs="{'invisible': [('is_driver', '!=' ,True)]}"/>
+                    </header>
+                </xpath>
+
+                <field name="category_id" position="after">
+                    <field name="is_driver"/>
+                    <field name="technical_review_expiration_date" attrs="{'invisible': [('is_driver', '!=' ,True)]}" />
+                    <field name="accepting_travels" attrs="{'invisible': [('is_driver', '!=' ,True)]}" />
+
+                </field>
+                <field name="lang" position="after">
+                    <field name="promotion_code"/>
+                </field>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Services" attrs="{'invisible': [('is_driver', '!=' ,True)]}">
+                        <group>
+                            <group>
+                                <field name="service_type_driver_ids" widget="many2many_tags"/>
+                                <field name="travel_type_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Classification">
+                        <group>
+                            <group>
+                                <field name="qualification"/>
+                                <field name="qty_finished_travels"/>
+<!--                                <field name="rejected_request_ids"/>-->
+                                <field name="availability_rate"/>
+                                <field name="acceptance_rate"/>
+                                <field name="cancellation_average"/>
+                                <field name="available_average"/>
+                                <field name="points"/>
+                                <field name="category"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Attached documents">
+                        <group>
+                            <group>
+                                <field name="attachment_ids" widget="many2many_binary"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Favorites" attrs="{'invisible': [('is_driver', '=' ,True)]}">
+                        <group col="2" string="Favorite Location">
+                            <field name="transport_location_ids" nolabel="1">
+                                <tree string="Favorite Location" editable="bottom">
+                                    <field name="client_id" required="1" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="longitude"/>
+                                    <field name="latitude"/>
+                                    <field name="address"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group col="2" string="Favorite Travel">
+                            <field name="favorite_travel_ids" nolabel="1">
+                                <tree string="Favorite Travel" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="client_id" required="1" invisible="1"/>
+                                    <field name="travel"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group col="2" string="Favorite Driver">
+                            <field name="favorite_driver_ids" nolabel="1">
+                                <tree string="Favorite Driver" editable="bottom">
+                                    <field name="client_id" required="1" invisible="1"/>
+                                    <field name="driver_id"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group col="2" string="Block Driver">
+                            <field name="block_driver_ids" nolabel="1">
+                                <tree string="Block Driver" editable="bottom">
+                                    <field name="client_id" required="1" invisible="1"/>
+                                    <field name="driver_id"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Polls">
+                            <!--readonly="True"-->
+                        <field name="poll_ids" nolabel="1" readonly="True">
+                            <tree string="Polls" editable="bottom">
+                                <field name="travel_id"/>
+                                <field name="evaluated_vehicle_id"/>
+                                <field name="evaluator_id"/>
+                                <field name="evaluated_id" invisible="1"/>
+                                <field name="seal_ids" invisible="1"/>
+                                <field name="quantitative_assessment"/>
+                                <field name="qualitative_assessment"/>
+                                <field name="comfort_quantitative_assessment"
+                                       string="Comfort Quantitative"
+                                       attrs="{'invisible': [('is_client_poll', '=' , False)]}"/>
+                                <field name="comfort_qualitative_assessment"
+                                       string="Comfort Qualitative"
+                                       attrs="{'invisible': [('is_client_poll', '=' , False)]}"/>
+                                <field name="is_client_poll" string="Client Poll"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page string="Seals">
+                        <field name="seal_list" widget="one2many_list" nolabel="1">
+                            <tree string="Seal List" editable="bottom">
+                                <field name="partner_id" required="1" invisible="1"/>
+                                <field name="seal_id"/>
+                                <field name="count"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_partners" model="ir.actions.act_window">
+            <field name="name">Partner</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <record id="action_service_types_driver" model="ir.actions.act_window">
+            <field name="name">Service type driver</field>
+            <field name="res_model">service.type.driver</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

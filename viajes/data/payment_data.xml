@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+            <!--
+         ====================
+         Payment method
+         ====================
+            -->
+        <record id="payment_method_cash" model="payment.method">
+            <field name="name">Cash</field>
+        </record>
+
+        <record id="payment_method_transfermovil" model="payment.method">
+            <field name="name">Transfermovil</field>
+        </record>
+
+        <record id="payment_method_enzona" model="payment.method">
+            <field name="name">Enzona</field>
+        </record>
+
+    </data>
+</odoo>

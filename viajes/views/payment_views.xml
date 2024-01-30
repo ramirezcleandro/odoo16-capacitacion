@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--
+       ====================
+       Payment methods
+       ====================
+          -->
+
+        <!-- Payment method Tree View  -->
+        <record id="payment_method_tree_view" model="ir.ui.view">
+            <field name="name">payment.method.tree</field>
+            <field name="model">payment.method</field>
+            <field name="arch" type="xml">
+                <tree string="Payment method" editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_payment_methods" model="ir.actions.act_window">
+            <field name="name">Payment method</field>
+            <field name="res_model">payment.method</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_conveyance" model="ir.actions.act_window">
+            <field name="name">Conveyance</field>
+            <field name="res_model">conveyance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_vehicle_types" model="ir.actions.act_window">
+            <field name="name">Vehicle type</field>
+            <field name="res_model">vehicle.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_vehicle_models" model="ir.actions.act_window">
+            <field name="name">Vehicle model</field>
+            <field name="res_model">vehicle.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_vehicle_brands" model="ir.actions.act_window">
+            <field name="name">Vehicle brand</field>
+            <field name="res_model">vehicle.brand</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+    </data>
+</odoo>

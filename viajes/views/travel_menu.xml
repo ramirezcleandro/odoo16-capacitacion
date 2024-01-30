@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+<!--		<menuitem icon="terp-hr" id="travel_group_menu" name="Travel"-->
+<!--				  web_icon="images/maintenance-icon.png"-->
+<!--				  web_icon_hover="images/maintenance-icon-hover.png"-->
+<!--				  action="df_action_maintenance_form"-->
+<!--				  sequence="15" />-->
+
+		<menuitem id="travels_group_menu" name="Travels"
+				 />
+
+		<menuitem id="vehicles_menu" name="Vehicles"
+				  parent="travels_group_menu" sequence="1"/>
+
+		<menuitem id="vehicles_item_menu" name="Vehicles"
+				  action="action_vehicles"
+				  parent="vehicles_menu"/>
+
+		<!--<menuitem id="transport_menu" name="Transport"-->
+				  <!--parent="travels_group_menu" sequence="2" invisible="1"/>-->
+
+		<!--<menuitem id="routes_item_menu" name="Transport routes"-->
+				  <!--action="action_transport_routes"-->
+				  <!--parent="transport_menu"/>-->
+
+		<menuitem id="travel_menu" name="Travel"
+				  parent="travels_group_menu" sequence="3" groups="viajes.group_usuario_operador"/>/>
+
+
+		<!-- <menuitem id="partners_item_menu" name="Partners"
+				  action="action_partners"
+				  parent="travel_menu"/> -->
+
+		<menuitem id="requests_item_menu" name="Travel requests"
+				  action="action_travel_requests"
+				  parent="travel_menu"/>
+
+		<menuitem id="offers_item_menu" name="Travel offers"
+				  action="action_travel_offers"
+				  parent="travel_menu"/>
+
+		<menuitem id="travels_item_menu" name="Travels"
+				  action="action_travels"
+				  parent="travel_menu"/>
+
+		<menuitem id="polls_item_menu" name="Travel polls"
+				  action="action_travel_polls"
+				  parent="travel_menu"/>
+
+		<menuitem id="favorite_menu" name="Favorite"
+				  parent="travels_group_menu" sequence="4"/>
+
+		<menuitem id="locations_item_menu" name="Favorite locations"
+				  action="action_transport_locations"
+				  parent="favorite_menu"/>
+
+		<menuitem id="favorite_travel_item_menu" name="Favorite travel"
+				  action="action_favorite_travel"
+				  parent="favorite_menu"/>
+
+        <menuitem id="favorite_driver_item_menu" name="Favorite driver"
+				  action="action_favorite_driver"
+				  parent="favorite_menu"/>
+
+        <menuitem id="block_driver_item_menu" name="Block driver"
+				  action="action_block_driver"
+				  parent="favorite_menu"/>
+
+		<menuitem id="block_client_item_menu" name="Block Client"
+				  action="action_block_client"
+				  parent="favorite_menu"/>
+
+		<menuitem id="configuration_menu" name="Configuration"
+				  parent="travels_group_menu" sequence="6"/>
+
+		<menuitem id="configuration_travel_menu" name="Travel"
+				  parent="configuration_menu"/>
+
+		<menuitem id="configuration_payment_menu" name="Payment"
+				  parent="configuration_menu"/>
+
+		<menuitem id="configuration_vehicle_menu" name="Vehicle"
+				  parent="configuration_menu"/>
+
+		<menuitem id="configuration_pool_menu" name="Pool"
+				  parent="configuration_menu" />
+
+		<menuitem id="travel_type_item_menu" name="Travel types"
+				  action="action_travel_types"
+				  parent="configuration_travel_menu"/>
+
+		<menuitem id="service_type_item_menu" name="Service types"
+				  action="action_service_types"
+				  parent="configuration_travel_menu"/>
+
+		<menuitem id="service_type_driver_item_menu" name="Service types driver"
+				  action="action_service_types_driver"
+				  parent="configuration_travel_menu"/>
+
+		<menuitem id="payment_method_item_menu" name="Payment methods"
+				  action="action_payment_methods"
+				  parent="configuration_payment_menu"/>
+
+		<menuitem id="pool_seal_item_menu" name="Pool seals"
+				  action="action_pool_seals"
+				  parent="configuration_pool_menu"/>
+
+		<menuitem id="conveyance_item_menu" name="Conveyances"
+				  action="action_conveyance"
+				  parent="configuration_vehicle_menu"/>
+
+<!--		<menuitem id="vehicle_type_item_menu" name="Vehicle types"-->
+<!--				  action="action_vehicle_types"-->
+<!--				  parent="configuration_vehicle_menu"/>-->
+
+<!--		<menuitem id="vehicle_model_item_menu" name="Models"-->
+<!--				  action="action_vehicle_models"-->
+<!--				  parent="configuration_vehicle_menu"/>-->
+
+<!--		<menuitem id="vehicle_brand_item_menu" name="Brands"-->
+<!--				  action="action_vehicle_brands"-->
+<!--				  parent="configuration_vehicle_menu"/>-->
+
+		<menuitem id="log_menu" name="Logs"
+				  parent="travels_group_menu" sequence="5"/>
+
+		<menuitem id="state_travel_log_item_menu" name="State logs"
+				  action="action_state_travel_logs"
+				  parent="log_menu"/>
+	</data>
+</odoo>

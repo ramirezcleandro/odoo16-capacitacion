@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--
+       ====================
+       Transport location
+       ====================
+          -->
+
+        <!-- Transport location Tree View  -->
+
+        <record id="transport_location_tree_view" model="ir.ui.view">
+            <field name="name">transport.location.tree</field>
+            <field name="model">transport.location</field>
+            <field name="arch" type="xml">
+                <tree string="Transport location">
+                    <field name="client_id"/>
+                    <field name="name"/>
+                    <field name="longitude"/>
+                    <field name="latitude"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="transport_location_form_view" model="ir.ui.view">
+            <field name="name">transport.location.form</field>
+            <field name="model">transport.location</field>
+            <field name="arch" type="xml">
+                <form string="Favorite Location">
+                    <group col="2" string="Client Data">
+                        <field name="client_id"/>
+                    </group>
+                    <group col="2" string="Location Data">
+                        <field name="name"/>
+                        <field name="longitude"/>
+                        <field name="latitude"/>
+                        <field name="address"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="favorite_travel_tree_view" model="ir.ui.view">
+            <field name="name">favorite.travel.tree</field>
+            <field name="model">favorite.travel</field>
+            <field name="arch" type="xml">
+                <tree string="Favorite Travel">
+                    <field name="client_id"/>
+                    <field name="travel"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="favorite_travel_form_view" model="ir.ui.view">
+            <field name="name">favorite.travel.form</field>
+            <field name="model">favorite.travel</field>
+            <field name="arch" type="xml">
+                <form string="Favorite Travel">
+                    <sheet>
+                        <field name="image_medium" widget='image' class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. My Favorite Travel"/>
+                            </h1>
+                        </div>
+                        <group col="2">
+                            <field name="client_id"/>
+                            <field name="travel"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="favorite_driver_tree_view" model="ir.ui.view">
+            <field name="name">favorite.driver.tree</field>
+            <field name="model">favorite.driver</field>
+            <field name="arch" type="xml">
+                <tree string="Favorite Driver">
+                    <field name="client_id"/>
+                    <field name="driver_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="favorite_driver_form_view" model="ir.ui.view">
+            <field name="name">favorite.driver.form</field>
+            <field name="model">favorite.driver</field>
+            <field name="arch" type="xml">
+                <form string="Favorite Driver">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" invisible="1"/>
+                            <h1>
+                                <field name="name" invisible="1"/>
+                            </h1>
+                        </div>
+                        <group col="2">
+                            <field name="client_id"/>
+                            <field name="driver_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="block_driver_tree_view" model="ir.ui.view">
+            <field name="name">block.driver.tree</field>
+            <field name="model">block.driver</field>
+            <field name="arch" type="xml">
+                <tree string="Block Driver">
+                    <field name="client_id"/>
+                    <field name="driver_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="block_driver_form_view" model="ir.ui.view">
+            <field name="name">block.driver.form</field>
+            <field name="model">block.driver</field>
+            <field name="arch" type="xml">
+                <form string="Block Driver">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" invisible="1"/>
+                            <h1>
+                                <field name="name" invisible="1"/>
+                            </h1>
+                        </div>
+                        <group col="2">
+                            <field name="client_id"/>
+                            <field name="driver_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="block_client_tree_view" model="ir.ui.view">
+            <field name="name">block.client.tree</field>
+            <field name="model">block.client</field>
+            <field name="arch" type="xml">
+                <tree string="Block Client">
+                    <field name="driver_id"/>
+                    <field name="client_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="block_client_form_view" model="ir.ui.view">
+            <field name="name">block.client.form</field>
+            <field name="model">block.client</field>
+            <field name="arch" type="xml">
+                <form string="Block Client">
+                    <group col="2">
+                        <field name="driver_id"/>
+                        <field name="client_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!--
+      ====================
+      Transport route
+      ====================
+         -->
+
+        <!-- Transport route Tree View  -->
+        <record id="transport_route_tree_view" model="ir.ui.view">
+            <field name="name">transport.route.tree</field>
+            <field name="model">transport.route</field>
+            <field name="arch" type="xml">
+                <tree string="Transport route">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Transport route Form View -->
+        <record model="ir.ui.view" id="transport_route_form_view">
+            <field name="name">transport.route.form</field>
+            <field name="model">transport.route</field>
+            <field name="arch" type="xml">
+                <form string=" Route">
+                    <sheet>
+
+                        <div class="oe_title">
+                            <label for="name" string="Route name" />
+                            <h1>
+                                <field name="name" select="1"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <field name="location_ids" nolabel="1">
+                                <tree string="Locations" editable="bottom">
+                                    <field name="location_id" required="1"/>
+                                    <field name="waiting_time"/>
+                                    <field name="pickup_time"/>
+                                    <field name="arrival_time"/>
+                                    <!--                                    <field name="estimated_time" widget="float_time"/>-->
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--
+     ====================
+     Travel type
+     ====================
+        -->
+
+        <!-- Travel type Tree View  -->
+        <record id="travel_type_tree_view" model="ir.ui.view">
+            <field name="name">travel.type.tree</field>
+            <field name="model">travel.type</field>
+            <field name="arch" type="xml">
+                <tree string="Travel type" editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+      ====================
+      Service type
+      ====================
+         -->
+
+        <!-- Service type Tree View  -->
+        <record id="service_type_tree_view" model="ir.ui.view">
+            <field name="name">service.type.tree</field>
+            <field name="model">service.type</field>
+            <field name="arch" type="xml">
+                <tree string="Service type" editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+       ====================
+       Travel request
+       ====================
+          -->
+
+        <!-- Travel request Tree View  -->
+        <record id="travel_request_tree_view" model="ir.ui.view">
+            <field name="name">travel.request.tree</field>
+            <field name="model">travel.request</field>
+            <field name="arch" type="xml">
+                <tree string="Travel requests">
+                    <field name="travel_request_number"/>
+                    <field name="client_id"/>
+                    <field name="service_type_id"/>
+                    <field name="payment_method_id"/>
+                    <field name="travel_type_id"/>
+                    <field name="tour_type"/>
+                    <field name="passengers_qty"/>
+                    <field name="children"/>
+                    <!--                    <field name="at_service"/>-->
+                    <field name="air_conditioning"/>
+                    <field name="pets"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Travel request Form View -->
+        <record model="ir.ui.view" id="travel_request_form_view">
+            <field name="name">travel.request.form</field>
+            <field name="model">travel.request</field>
+            <field name="arch" type="xml">
+                <form string=" Travel request">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="travel_request_number" string="Travel request" />
+                            <h1>
+                                <field name="travel_request_number" select="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="client_id" groups="viajes.group_admin_operador"/>
+                                <field name="payment_method_id"/>
+                                <field name="service_type_id"/>
+                                <field name="travel_type_id"/>
+                            </group>
+                            <group>
+                                <field name="tour_type"/>
+                                <field name="pets"/>
+                                <field name="air_conditioning"/>
+                                <field name="passengers_qty"/>
+                                <field name="children"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Location">
+                                <field name="location_ids" widget="one2many_list" nolabel="1">
+                                    <tree string="Locations" editable="bottom">
+                                        <field name="location_id"/>
+                                        <field name="longitude"/>
+                                        <field name="latitude"/>
+                                        <field name="address"/>
+                                        <field name="distance"/>
+                                        <field name="waiting_time"/>
+                                        <field name="pickup_time"/>
+                                        <field name="arrival_time"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Travel request Search View -->
+        <record id="travel_request_search_view" model="ir.ui.view">
+            <field name="name">travel.request.search.view</field>
+            <field name="model">travel.request</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="client_id"/>
+                    <field name="payment_method_id"/>
+                    <field name="pets"/>
+                    <field name="air_conditioning"/>
+                    <field name="at_service"/>
+                    <field name="tour_type"/>
+                    <filter string="Pets" name="pets" domain="[('pets','=', True)]" help="With pets"/>
+                    <filter string="No pets" name="no_pets" domain="[('pets','=', False)]" help="Without pets"/>
+                    <separator/>
+                    <filter string="Air conditioning" name="air_conditioning" domain="[('air_conditioning','=', True)]"/>
+                    <filter string="No air conditioning" name="no_air_conditioning" domain="[('air_conditioning','=', False)]"/>
+                    <separator/>
+                    <filter string="At service" name="at_service" domain="[('at_service','=', True)]"/>
+                    <filter string="Not at service" name="no_at_service" domain="[('at_service','=', False)]"/>
+                    <separator/>
+                    <filter string="Going" name="going" domain="[('tour_type','=','going')]"/>
+                    <filter string="Back" name="back" domain="[('tour_type','=','back')]"/>
+                    <filter string="Round" name="round" domain="[('tour_type','=','going_back')]"/>
+                    <filter string="Route" name="route" domain="[('tour_type','=','route')]"/>
+                    <filter string="Circuit" name="circuit" domain="[('tour_type','=','circuit')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Client" domain="[]" name="client" context="{'group_by':'client_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+      ====================
+      Travel
+      ====================
+         -->
+        <!-- Vista tree para mostrar los viajes por estado -->
+        <record id="view_travel_graph" model="ir.ui.view">
+            <field name="name">travel.graph</field>
+            <field name="model">travel</field>
+            <field name="arch" type="xml">
+                <graph string="Travel Requests by Status" type="bar" stacked="1">
+                    <field name="state"/>
+                    <field name="driver_id"/>
+                    <field name="driver_comission_amount"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Travel Tree View  -->
+        <record id="travel_tree_view" model="ir.ui.view">
+            <field name="name">travel.tree</field>
+            <field name="model">travel</field>
+            <field name="arch" type="xml">
+                <tree string="Travel offers">
+                    <field name="travel_number"/>
+                    <field name="travel_offer_id"/>
+                    <field name="client_id"/>
+                    <field name="driver_id"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="price" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="driver_comission_amount" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Travel Form View -->
+        <record model="ir.ui.view" id="travel_form_view">
+            <field name="name">travel.form</field>
+            <field name="model">travel</field>
+            <field name="arch" type="xml">
+                <form string=" Travel">
+                    <header>
+                        <!--clickable="True"-->
+                        <button name="button_report" string="Ver reporte" class="oe_highlight" type="object"/>
+                        <field name="state"
+                               widget="statusbar"
+                               statusbar_colors='{"completed":"green","abandoned":"red","cancelled":"red"}'/>
+
+                        <button name="action_processing"
+                                class="oe_highlight"
+                                string="Processing"
+                                type="object"
+                                attrs="{'invisible': [('state', 'in' , ('processing',
+                                                                        'test',
+                                                                        'cancelled',
+                                                                        'abandoned',
+                                                                        'ongoing',
+                                                                        'completed'))]}"/>
+
+                        <button name="action_test"
+                                class="oe_highlight"
+                                string="Prueba"
+                                type="object"
+                                attrs="{'invisible': [('state', 'in' , ('created',
+                                                                        'test',
+                                                                        'cancelled',
+                                                                        'abandoned',
+                                                                        'ongoing',
+                                                                        'completed'))]}"/>
+
+                        <button name="action_ongoing"
+                                class="oe_highlight"
+                                string="Ongoing"
+                                type="object"
+                                attrs="{'invisible': [('state', 'in' , ('created',
+                                                                        'test',
+                                                                        'cancelled',
+                                                                        'abandoned',
+                                                                        'ongoing',
+                                                                        'completed'))]}"/>
+
+                        <button name="action_cancelled"
+                                string="Cancelled"
+                                type="object"
+                                attrs="{'invisible': [('state', 'in' , ('created',
+                                                                        'test',
+                                                                        'cancelled',
+                                                                        'abandoned',
+                                                                        'ongoing',
+                                                                        'completed'))]}"/>
+
+                        <button name="action_abandoned"
+                                string="Abandoned"
+                                type="object"
+                                attrs="{'invisible': [('state', 'in' , ('created',
+                                                                        'test',
+                                                                        'cancelled',
+                                                                        'abandoned',
+                                                                        'ongoing',
+                                                                        'completed'))]}"/>
+
+                        <button name="action_completed"
+                                class="oe_highlight"
+                                string="Completed"
+                                type="object"
+                                attrs="{'invisible': [('state', 'in' , ('created',
+                                                                        'test',
+                                                                        'processing',
+                                                                        'cancelled',
+                                                                        'abandoned',
+                                                                        'completed'))]}"/>
+
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="travel_number" string="Travel"/>
+                            <h1>
+                                <field name="travel_number" select="1"/>
+                            </h1>
+                            <label for="travel_number" string="Travel Date"/>
+                            <h4>
+                                <field name="travel_date"/>
+                            </h4>
+                            <label for="end_travel_date" string="End Travel Date"/>
+                            <h4>
+                                <field name="end_travel_date"
+                                       attrs="{'invisible': [('state', 'in' , ('created', 'processing', 'ongoing'))]}"/>
+                            </h4>
+                        </div>
+
+                        <group col="4" string="Aviaje Comission Amount" name="aviaje_comission_amount">
+                            <field name="travel_offer_id"/>
+                            <field name="company_id"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="aviaje_comission_amount" readonly="True" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="tm_order_id"/>
+                        </group>
+
+                        <group string="Client Information" name="client_information">
+                            <group name="client_left">
+                                <field name="client_id" readonly="True"/>
+                                <field name="client_devolution_amount" readonly="True"
+                                       attrs="{'invisible': [('state', 'in' , ('created', 'processing', 'ongoing',
+                                       'completed'))]}" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="client_price" readonly="True"
+                                       attrs="{'invisible': [('state', 'in' , ('cancelled', 'abandoned'))]}" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </group>
+
+                        <group string="Driver Comission Amount" name="driver_id" attrs="{'invisible': [('state', 'in' , ('cancelled', 'abandoned'))]}">
+                            <field name="driver_id" readonly="True"/>
+                            <field name="driver_comission_amount" readonly="True" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+
+                        <notebook colspan="4">
+                            <page string="Locations">
+                                <field name="location_ids" nolabel="1">
+                                    <tree string="Locations" editable="bottom">
+                                        <field name="location_id"/>
+                                        <field name="longitude"/>
+                                        <field name="latitude"/>
+                                        <field name="address"/>
+                                        <field name="distance"/>
+                                        <field name="waiting_time"/>
+                                        <field name="pickup_time"/>
+                                        <field name="arrival_time"/>
+                                        <!--                                    <field name="estimated_time" widget="float_time"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Travel Search View -->
+        <record id="travel_search_view" model="ir.ui.view">
+            <field name="name">travel.search</field>
+            <field name="model">travel</field>
+            <field name="arch" type="xml">
+                <search string="Search Travels">
+                    <field name="client_id"/>
+                    <field name="driver_id"/>
+                    <field name="state"/>
+                    <!--                    <field name="vehicle_id"/>-->
+                    <filter string="Created" name="created" domain="[('state','=','created')]" help="Created"/>
+                    <filter string="Cancelled" name="cancelled" domain="[('state','=','cancelled')]" help="Cancelled"/>
+                    <filter string="Abandoned" name="abandoned" domain="[('state','=','abandoned')]"/>
+                    <filter string="Completed" name="completed" domain="[('state','=','completed')]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <!--<filter name="client_id" string="Client" domain="[]" context="{'group_by':'client_id'}"/>-->
+                        <!--<filter name="driver_id" string="Driver" domain="[]" context="{'group_by':'driver_id'}"/>-->
+                        <filter string="Status" domain="[]" name="status" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+     ====================
+     Travel offer
+     ====================
+        -->
+
+        <!-- Travel offer Tree View  -->
+        <record id="travel_offer_tree_view" model="ir.ui.view">
+            <field name="name">travel.offer.tree</field>
+            <field name="model">travel.offer</field>
+            <field name="arch" type="xml">
+                <tree string="Travel offers">
+                    <field name="travel_offer_number"/>
+                    <field name="travel_request_id"/>
+                    <field name="driver_id"/>
+                    <field name="driver_price"/>
+                    <field name="vehicle_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Travel offer Form View -->
+        <record model="ir.ui.view" id="travel_offer_form_view">
+            <field name="name">travel.offer.form</field>
+            <field name="model">travel.offer</field>
+            <field name="arch" type="xml">
+                <form string=" Travel offer">
+                    <sheet>
+
+                        <div class="oe_title">
+                            <label for="travel_offer_number" string="Travel offer" />
+                            <h1>
+                                <field name="travel_offer_number" select="1"/>
+                            </h1>
+                        </div>
+
+                        <group col="4">
+                            <field name="travel_request_id"/>
+                            <field name="vehicle_id"/>
+                            <field name="driver_id"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="suggested_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="driver_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="pickup_time"/>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Travel offer Search View -->
+        <record id="travel_offer_search_view" model="ir.ui.view">
+            <field name="name">travel.offer.search</field>
+            <field name="model">travel.offer</field>
+            <field name="arch" type="xml">
+                <search string="Search Travel offers">
+                    <field name="driver_id"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Driver" name="driver" domain="[]" context="{'group_by':'driver_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!--
+       ====================
+       Poll seal
+       ====================
+          -->
+
+        <!-- Payment method Tree View  -->
+        <record id="pool_seal_tree_view" model="ir.ui.view">
+            <field name="name">pool.seal.tree</field>
+            <field name="model">pool.seal</field>
+            <field name="arch" type="xml">
+                <tree string="Pool seal" editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+      ====================
+      Travel poll
+      ====================
+         -->
+
+        <!-- Travel poll Tree View  -->
+        <record id="travel_poll_tree_view" model="ir.ui.view">
+            <field name="name">travel.poll.tree</field>
+            <field name="model">travel.poll</field>
+            <field name="arch" type="xml">
+                <tree string="Travel polls">
+                    <field name="travel_id"/>
+                    <field name="evaluator_id"/>
+                    <field name="evaluated_id"/>
+                    <field name="evaluated_vehicle_id"/>
+                    <field name="quantitative_assessment"/>
+                    <field name="comfort_quantitative_assessment"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Travel poll Form View -->
+        <record model="ir.ui.view" id="travel_poll_form_view">
+            <field name="name">travel.poll.form</field>
+            <field name="model">travel.poll</field>
+            <field name="arch" type="xml">
+                <form string=" Travel poll">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="travel_id" string="Travel name" />
+                            <h1>
+                                <field name="travel_id" select="1"/>
+                            </h1>
+                        </div>
+                        <group col="4" string="Evaluation">
+                            <field name="evaluator_id"/>
+                            <field name="evaluated_id"/>
+                            <field name="is_client_poll"/>
+                            <field name="evaluated_vehicle_id" attrs="{'invisible': [('is_client_poll', '!=' ,True)]}"/>
+                        </group>
+                        <group col="4" string="Quantitative Evaluation">
+                            <field name="quantitative_clasification" widget="priority"/>
+                            <field name="quantitative_assessment" invisible="1"/>
+                            <field name="qualitative_assessment"/>
+                        </group>
+                        <group col="4" string="Comfort Evaluation" attrs="{'invisible': [('is_client_poll', '!=' ,True)]}">
+                            <field name="comfort_clasification" widget="priority" attrs="{'invisible': [('is_client_poll', '!=' ,True)]}"/>
+                            <field name="comfort_quantitative_assessment" invisible="1"/>
+                            <field name="comfort_qualitative_assessment" attrs="{'invisible': [('is_client_poll', '!=' ,True)]}"/>
+                        </group>
+                        <group col="4" string="Seal" attrs="{'invisible': [('quantitative_clasification', '!=' ,'5')]}">
+                            <field name="seal_ids"
+                                   widget="many2many_tags"
+                                   options="{'color_field': 'color', 'no_create_edit': True}"
+                                   />
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Travel poll Search View -->
+        <record id="travel_poll_search_view" model="ir.ui.view">
+            <field name="name">travel.poll.search</field>
+            <field name="model">travel.poll</field>
+            <field name="arch" type="xml">
+                <search string="Search Travel polls">
+                    <field name="travel_id"/>
+                    <field name="evaluator_id"/>
+                    <field name="evaluated_id"/>
+                    <field name="evaluated_vehicle_id"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Evaluator" name="evaluator" domain="[]" context="{'group_by':'evaluator_id'}"/>
+                        <filter string="Evaluated" name="evaluated" domain="[]" context="{'group_by':'evaluated_id'}"/>
+                        <filter string="Evaluated vehicle" name="vehicle" domain="[]" context="{'group_by':'evaluated_vehicle_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!--
+     ====================
+     State travel logs
+     ====================
+        -->
+
+        <!-- State travel log Tree View  -->
+        <record id="state_travel_log_tree_view" model="ir.ui.view">
+            <field name="name">state.travel.log.tree</field>
+            <field name="model">state.travel.log</field>
+            <field name="arch" type="xml">
+                <tree string="Logs">
+                    <field name="travel_id"/>
+                    <field name="state"/>
+                    <field name="time"/>
+                    <field name="performed_partner_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- State travel log Search View -->
+        <record id="state_travel_log_search_view" model="ir.ui.view">
+            <field name="name">state.travel.log.search</field>
+            <field name="model">state.travel.log</field>
+            <field name="arch" type="xml">
+                <search string="Search state travel log">
+                    <field name="travel_id"/>
+                    <field name="state"/>
+                    <field name="performed_partner_id"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Travel" name="travel" domain="[]" context="{'group_by':'travel_id'}"/>
+                        <filter string="Performer" name="performer" domain="[]" context="{'group_by':'performed_partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--
+      ====================
+      Actions
+      ====================
+         -->
+
+        <record id="action_transport_locations" model="ir.actions.act_window">
+            <field name="name">Favorite Locations</field>
+            <field name="res_model">transport.location</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="action_favorite_travel" model="ir.actions.act_window">
+            <field name="name">Favorite Travel</field>
+            <field name="res_model">favorite.travel</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="action_favorite_driver" model="ir.actions.act_window">
+            <field name="name">Favorite Driver</field>
+            <field name="res_model">favorite.driver</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="action_block_client" model="ir.actions.act_window">
+            <field name="name">Block Client</field>
+            <field name="res_model">block.client</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="action_block_driver" model="ir.actions.act_window">
+            <field name="name">Block Driver</field>
+            <field name="res_model">block.driver</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="action_transport_routes" model="ir.actions.act_window">
+            <field name="name">Transport Routes</field>
+            <field name="res_model">transport.route</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="action_travel_types" model="ir.actions.act_window">
+            <field name="name">Travel type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">travel.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="action_service_types" model="ir.actions.act_window">
+            <field name="name">Service type</field>
+            <field name="res_model">service.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="action_travel_requests" model="ir.actions.act_window">
+            <field name="name">Travel Requests</field>
+            <field name="res_model">travel.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="viajes.travel_request_search_view"/>
+            <field name="context">{'group_by': 'client_id'}</field>
+        </record>
+
+<!--        travel_offer_search_view-->
+        <record id="action_travel_offers" model="ir.actions.act_window">
+            <field name="name">Travel Offers</field>
+            <field name="res_model">travel.offer</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="viajes.travel_offer_search_view"/>
+        </record>
+
+        <record id="action_travels" model="ir.actions.act_window">
+            <field name="name">Travels</field>
+            <field name="res_model">travel</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="view_id" ref="travel_tree_view"/>
+            <field name="search_view_id" ref="viajes.travel_search_view"/>
+        </record>
+
+        <record id="action_pool_seals" model="ir.actions.act_window">
+            <field name="name">Pool seal</field>
+            <field name="res_model">pool.seal</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_travel_polls" model="ir.actions.act_window">
+            <field name="name">Travel polls</field>
+            <field name="res_model">travel.poll</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="viajes.travel_poll_search_view"/>
+        </record>
+
+        <record id="action_state_travel_logs" model="ir.actions.act_window">
+            <field name="name">State travel logs</field>
+            <field name="res_model">state.travel.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="viajes.state_travel_log_search_view"/>
+        </record>
+
+    </data>
+</odoo>

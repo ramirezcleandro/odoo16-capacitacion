@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="tracking_purchase_order_line_tree_view" model="ir.ui.view">
+            <field name="name">tracking.purchase.order.line.tree.view</field>
+            <field name="model">tracking.purchase.order.line</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Tracking Purchase Order Line" editable="bottom">
+                    <field name="tracking_date"/>
+                    <field name="status" invisible="1"/>
+                    <field name="status_massage"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="mantenedor_tracking_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mantenedor_tracking_view_form">
+            <field name="name">mantenedor.tracking.form</field>
+            <field name="model">mantenedor.tracking</field>
+            <field name="arch" type="xml">
+                <form string="Mantenedor Tracking">
+                    <header>
+                        <button name="manual_track"
+                               string="Manual Tracking"
+                               type="object" attrs="{'invisible': [('parcelsapp_status', '=', 'delivered')]}"/>
+
+                        <button name="arrived"
+                                string="Manual Arrived"
+                                type="object" attrs="{'invisible': [('done', '=', True)]}"/>
+
+                        <button name="create_offer"
+                                string="Create Offer"
+                                type="object"/>
+
+                        <field name="parcelsapp_status" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name" invisible="1"/></h1>
+<!--                            <h1><field name="mantenedor" readonly="1"/></h1>-->
+                        </div>
+                        <group name="trackings_datas">
+                            <group string="Tracking">
+                                <field name="tracking"/>
+                                <field name="internal_tracking" invisible="1"/>
+                            </group>
+                            <group string="Last State">
+                                <field name="expected_location" readonly="1"/>
+                                <field name="expected_date" readonly="1"/>
+                                <field name="status_message" readonly="1"/>
+                            </group>
+                        </group>
+                        <group name="trackings_datas">
+                            <group>
+                                <field name="parcelsapp_tracking_number" readonly="1"/>
+                                <field name="connection_status" readonly="1"/>
+                                <field name="error_message" readonly="1" attrs="{'invisible': [('connection_status','=',True)]}"/>
+                                <field name="parcelsapp_api_key"/>
+                                <field name="externalTracking" widget="url" readonly="1"/>
+                                <field name="done" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="destination" readonly="1"/>
+                                <field name="toregion" readonly="1"/>
+                                <field name="carriers" readonly="1"/>
+                                <field name="days_in_transit" readonly="1"/>
+                            </group>
+                        </group>
+                        <field name="tracking_purchase_order_line_ids"
+                               readonly="1"
+                               nolabel="1"
+                               widget="one2many_list"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mantenedor_tracking_view_tree">
+            <field name="name">mantenedor.tracking.view.tree</field>
+            <field name="model">mantenedor.tracking</field>
+            <field name="arch" type="xml">
+                <tree string="Mantenedor Tracking">
+                    <field name="carriers"/>
+                    <field name="destination"/>
+                    <field name="toregion"/>
+                    <field name="days_in_transit"/>
+                    <field name="parcelsapp_status" decoration-success = "parcelsapp_status == 'pickup'"
+                                         decoration-info = "parcelsapp_status == 'other'"
+                                         decoration-primary = "parcelsapp_status == 'transit'"
+                                         decoration-warning = "parcelsapp_status == 'delivered'"
+                           widget="badge"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="mantenedor_tracking_view_action">
+            <field name="name">Mantenedor Tracking</field>
+            <field name="res_model">mantenedor.tracking</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_mantenedor_tracking"
+              name="Tracking Record"
+              parent="configuration_menu"
+              action="mantenedor_tracking_view_action"
+              sequence="7"/>
+
+
+
+    </data>
+</odoo>
